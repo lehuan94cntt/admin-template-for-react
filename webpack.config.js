@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const webpack = require('webpack');
 const app = require('./package.json');
@@ -136,9 +137,6 @@ module.exports = {
             },
             {
                 from: './README.md',
-            },
-            {
-                from: './README.zh-CN.md',
             },
         ]),
         new MiniCssExtractPlugin({

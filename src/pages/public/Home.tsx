@@ -122,13 +122,6 @@ class Home extends React.Component<HomeComponentProps, HomeComponentState> {
 
         return (
             <div className={classes.body}>
-                <a href="https://github.com/bndynet/admin-template-for-react">
-                    <img
-                        className={classes.forkMe}
-                        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
-                        alt="Fork me on GitHub"
-                    />
-                </a>
                 <main className={classes.main}>
                     <div className="margin-bottom-2">
                         <Link to={utils.link('admin')}>
@@ -138,27 +131,6 @@ class Home extends React.Component<HomeComponentProps, HomeComponentState> {
                                 </Typography>
                             </Button>
                         </Link>
-                        <Select
-                            className="margin-left-2"
-                            value={this.state.locale}
-                            onChange={evt => this.handleChangeLocale(evt)}
-                            displayEmpty={true}
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            {config.locales.map(locale => (
-                                <MenuItem
-                                    key={locale.value}
-                                    value={locale.value}
-                                    selected={
-                                        this.state.locale === locale.value
-                                    }
-                                >
-                                    {locale.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
                     </div>
                     <ReactMarkdown
                         source={this.state.readme}
@@ -204,12 +176,7 @@ class Home extends React.Component<HomeComponentProps, HomeComponentState> {
 
     private getReadme() {
         loading();
-        const filename =
-            intl.getInitOptions().currentLocale === 'en-US'
-                ? utils.link('README.md')
-                : utils.link(
-                      `README.${intl.getInitOptions().currentLocale}.md`,
-                  );
+        const filename = utils.link('README.md');
         resourceService
             .get(filename)
             .then((res: any) => {
